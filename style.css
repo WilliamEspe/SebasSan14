@@ -1,0 +1,283 @@
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #ff8fa3;
+    --bg-color: #fff0f3;
+    --text-color: #590d22;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none !important; 
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.delay-1 {
+    animation-delay: 1s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.pulse {
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+
+/* Heart Formation Layout */
+.heart-formation-container {
+    position: relative;
+    width: 600px;
+    height: 600px; /* Increased height to give space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Push buttons down */
+}
+
+.particle-heart {
+    position: absolute;
+    transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1); /* Smoother pop */
+    opacity: 0;
+    /* Important: We set left/top to 0 or 50% in JS, but here we can ensure they center */
+    top: 50%;
+    left: 50%;
+    margin-top: -10px; /* Center adjustment based on approx size */
+    margin-left: -10px;
+}
+
+.question-text {
+    position: absolute;
+    z-index: 10;
+    color: #d80032;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px 40px;
+    border-radius: 50px;
+    transition: opacity 1s ease-in-out;
+    white-space: nowrap;
+    border: 2px solid #ffccd5;
+}
+
+.hidden-text {
+    opacity: 0;
+}
+
+/* Buttons */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    font-family: 'Poppins', sans-serif;
+    margin: 10px;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+    z-index: 100; /* Ensure buttons are clickable */
+}
+
+button:hover {
+    background-color: #c9184a;
+    transform: scale(1.1);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row; /* Explicitly set row */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Reduced gap slightly */
+    margin-top: 20px;
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    transition: opacity 1s ease-in-out; 
+}
+
+/* New class for delayed appearance */
+.transparent {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#btn-yes {
+    transition: transform 0.3s ease;
+}
+
+#btn-no {
+    transition: all 0.2s ease;
+    position: relative; /* Ensure it starts in flow */
+}
+
+
+/* Images */
+.cute-gif, .celebrate-gif {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Background Hearts */
+.background-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    color: var(--secondary-color);
+    opacity: 0.6;
+    animation: floatHeart 6s infinite linear;
+}
+
+@keyframes floatHeart {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0.8; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ffd700;
+    animation: confettiFall 2.5s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Image Gallery */
+.gallery-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    z-index: 10;
+}
+
+.gallery-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 4px solid white;
+    transform: rotate(var(--r, 0deg)); /* Use default to avoid valid CSS error if var empty */
+    transition: transform 0.3s ease, z-index 0.3s;
+    cursor: pointer;
+}
+
+/* Add some random rotation to give a "photos on table" vibe */
+.gallery-img:nth-child(1) { --r: -5deg; }
+.gallery-img:nth-child(2) { --r: 3deg; }
+.gallery-img:nth-child(3) { --r: -2deg; }
+
+.gallery-img:hover {
+    transform: scale(1.2) rotate(0deg);
+    z-index: 20;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Adjust celebrate gif size if needed */
+.celebrate-gif {
+    max-height: 150px;
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .heart-formation-container {
+        width: 100%;
+        max-width: 100vw;
+        height: 50vh; /* Adjust height for mobile */
+    }
+
+    .gallery-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    button {
+        width: 80%;
+        max-width: 300px;
+        font-size: 1rem;
+        padding: 12px 24px;
+    }
+
+    .question-text {
+        font-size: 1.2rem;
+        padding: 15px 25px;
+        width: 90%;
+        text-align: center;
+        white-space: normal; /* Allow text wrapping */
+    }
+}

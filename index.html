@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-hearts"></div>
+
+    <div class="container" id="screen-1">
+        <h1 class="fade-in">Tengo una pregunta muy importante que decirte... 😳</h1>
+        <button class="btn-next fade-in delay-1" onclick="nextScreen()">Siguiente ➡️</button>
+    </div>
+
+    <div class="container hidden" id="screen-2">
+        <div class="heart-formation-container" id="heart-formation">
+            <h1 class="pulse question-text hidden-text">¿Quieres ser mi San Valentín?🌹</h1>
+        </div>
+
+        <div class="buttons transparent">
+            <button id="btn-yes" onclick="celebrate()">¡Sí! 😍</button>
+            <button id="btn-no" onmouseover="moveButton()" onclick="moveButton()" ontouchstart="moveButton()">No
+                😢</button>
+        </div>
+    </div>
+
+    <div class="container hidden" id="screen-3">
+        <h1>¡Siiiiiii! 🎉💖</h1>
+        <p>¡Gracias por hacerme la persona más feliz! 🥰</p>
+        <div class="gallery-container">
+            <img src="img/img1.jpeg" alt="Nosotros 1" class="gallery-img">
+            <img src="img/img2.jpeg" alt="Nosotros 2" class="gallery-img">
+            <img src="img/img3.jpeg" alt="Nosotros 3" class="gallery-img">
+        </div>
+        <div class="confetti-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
